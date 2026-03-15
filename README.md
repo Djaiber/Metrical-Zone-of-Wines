@@ -30,9 +30,58 @@ hybrid persistence architectures
 NoSQL document modeling
 web application integration with databases
 structured IT project management
-📂 Repository Structure
-backend/        Spring Boot API
-frontend/       React + TypeScript UI
-docs/           Architecture and database documentation
-infrastructure/ Terraform and deployment scripts
 
+
+---
+
+# 🛠 Technology Stack
+
+| Layer | Technology |
+|------|------------|
+| Frontend | React + TypeScript |
+| Backend | Java + Spring Boot |
+| Relational Database | MySQL |
+| NoSQL Database | MongoDB |
+| Database Versioning | Flyway |
+| Infrastructure | AWS EC2 Virtual Machines |
+| Infrastructure as Code | Terraform |
+| Configuration Management | Ansible |
+| CI/CD | GitHub Actions |
+| Version Control | Git + GitHub |
+
+---
+
+# 🗄 Database Design
+
+The relational database includes:
+
+- **8+ normalized entities**
+- **Primary and foreign key constraints**
+- **Stored procedures**
+- **SQL functions**
+- **Triggers**
+- **Transaction control (COMMIT / ROLLBACK)**
+- **Exception handling**
+
+MongoDB is used to store wine review documents that include:
+
+- tasting notes
+- optional attributes
+- user review metadata
+- flexible document schema
+
+---
+
+# 📊 Project Objectives
+
+This project demonstrates the integration of multiple database and software engineering concepts:
+
+- relational database modeling and normalization
+- database-level business logic implementation
+- hybrid persistence architectures
+- NoSQL document modeling
+- full-stack web application development
+- DevOps and infrastructure automation
+- structured software project management
+
+---
