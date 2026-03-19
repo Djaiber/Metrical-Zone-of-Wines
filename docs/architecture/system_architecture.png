@@ -1,0 +1,7 @@
+![System Architecture Diagram]
+
+Placeholder for system architecture diagram showing:
+- Frontend (React) ↔ Backend (SpringBoot) ↔ Database (MySQL + MongoDB)
+- Caching layer
+- Message queues
+- External APIs

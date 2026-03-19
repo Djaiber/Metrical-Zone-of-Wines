@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+target/
+*.jar
+*.war
+layout.sh
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+application-local.yml
+
+# Build
+dist/
+build/
+out/
+
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform/
+
+# Ansible
+*.retry
