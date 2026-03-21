@@ -1,14 +1,7 @@
 # RACI Matrix
 
-| Activity | Project Manager | Lead Developer | Database Engineer | DevOps Engineer | QA Engineer |
-|----------|----------------|----------------|-------------------|-----------------|-------------|
-| Requirements Gathering | A/R | C | C | I | C |
-| Database Design | I | C | R/A | I | C |
-| Backend Development | I | R/A | C | C | I |
-| Frontend Development | I | R/A | I | C | I |
-| Infrastructure Setup | I | C | I | R/A | I |
-| Testing Strategy | C | C | C | I | R/A |
-| Deployment | I | C | I | R/A | C |
-| Documentation | A | R | R | R | R |
+Through this link, team members can edit the RACI matrix.
 
-R = Responsible, A = Accountable, C = Consulted, I = Informed
+Ensure to update the version number each time you change the file.
+
+[RACI Matrix](https://unbosqueeduco-my.sharepoint.com/:x:/g/personal/dsramireza_unbosque_edu_co/IQBLasP5TKjCQ4_1oPogtA11AfjQn1biiX9PJ5JQOoyWJ6I?e=iN4bqo)
