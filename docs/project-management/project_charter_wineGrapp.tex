@@ -1,0 +1,291 @@
+\documentclass[12pt, a4paper]{article}
+
+% ─── Paquetes ───────────────────────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{tocbibind}
+
+% ─── Márgenes ───────────────────────────────────────────────────────────────
+\geometry{top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm}
+
+% ─── Encabezado y pie de página ─────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\textit{Acta de Inicio — Winegrapp}}
+\lhead{\textit{ACID'os}}
+\rfoot{\thepage}
+
+% ─── Colores ────────────────────────────────────────────────────────────────
+\definecolor{headerblue}{RGB}{31, 73, 125}
+
+% ─── Formato de secciones ───────────────────────────────────────────────────
+\titleformat{\section}{\large\bfseries\color{headerblue}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+
+% ─── Hipervínculos ──────────────────────────────────────────────────────────
+\hypersetup{
+    colorlinks=true,
+    linkcolor=headerblue,
+    urlcolor=headerblue
+}
+
+% ────────────────────────────────────────────────────────────────────────────
+\begin{document}
+
+% ─── Portada ────────────────────────────────────────────────────────────────
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    {\Huge\bfseries Acta de Inicio\par}
+    \vspace{1cm}
+    {\LARGE\itshape Winegrapp\par}
+    \vspace{2cm}
+    {\large Fecha: Incluir días previos a entrega\par}
+    \vfill
+    {\large Universidad El Bosque\par}
+\end{titlepage}
+
+% ─── Tabla de contenido ─────────────────────────────────────────────────────
+\tableofcontents
+\newpage
+
+% ────────────────────────────────────────────────────────────────────────────
+\section{Información del Proyecto}
+
+\subsection{Datos}
+
+\begin{tabular}{@{} l l @{}}
+    \toprule
+    \textbf{Campo}              & \textbf{Valor} \\
+    \midrule
+    Empresa / Organización      & ACID'os \\
+    Nombre del Proyecto         & Winegrapp \\
+    Fecha de preparación        & 11/03/2026 \\
+    Cliente                     & Comunidad Winer's \\
+    Patrocinador principal      & Universidad El Bosque \\
+    \bottomrule
+\end{tabular}
+
+% ────────────────────────────────────────────────────────────────────────────
+\section{Historial de Versiones}
+
+\begin{longtable}{@{} p{2.2cm} p{1.5cm} p{3cm} p{2.5cm} p{5cm} @{}}
+    \toprule
+    \textbf{Fecha} & \textbf{Versión} & \textbf{Autor} & \textbf{Organización} & \textbf{Descripción} \\
+    \midrule
+    \endhead
+    11/03/2026 & 1.0 & David Ramírez & ACID'os & Desarrollo de ítems hasta supuestos y restricciones. \\[6pt]
+    18/03/2026 & 1.1 & David Ramírez & ACID'os & Actualización de versión según los cambios definidos en los requisitos del proyecto, luego de la revisión del profesor. \\[6pt]
+    \midrule
+    \multicolumn{5}{@{} p{14.2cm} @{}}{
+        \textit{Nota: Las versiones desarrolladas antes de esta nota están basadas en el MVP, sin gestión de usuarios, sin APIs externas, sin críticas basadas en roles.}
+    } \\
+    \bottomrule
+\end{longtable}
+
+% ────────────────────────────────────────────────────────────────────────────
+\section{Propósito y Justificación del Proyecto}
+
+El presente proyecto tiene como propósito desarrollar un aplicativo web que permita a los usuarios de la comunidad ``Winer's'' compartir sus experiencias con los productos vínicos ofrecidos por los viñedos distribuidos por todo el mundo, de manera que la información proveniente de sus experiencias sea relevante y útil para los demás miembros de la comunidad. Además, se plantea la idea de usar la plataforma como un medio de ``culturización'' para personas que no pertenecen a la comunidad pero que buscan más información ya sea sobre los productos vínicos o de los viñedos.
+
+Por el hecho de que los viñedos se distribuyen por todo el mundo, el aplicativo permite hacer filtros por ubicaciones, mostrando así los viñedos existentes en el lugar de interés. Se busca que el aplicativo sea lo más detallado posible con respecto a las características de vida y producción del vino. Por lo tanto, es necesario exponer las características del viñedo y características de la elaboración, almacenamiento y otros procesos relacionados con la vida del vino.
+
+Debido a que la aplicación está pensada tanto para que los usuarios ingresen y compartan sus experiencias como para consultar únicamente información relevante a vinos y viñedos, los usuarios no deben registrarse ni almacenar sus datos, ya que este proceso no es relevante para la comunidad, misma que prioriza la agilidad de consulta y fácil registro de sus experiencias.
+
+Desde el punto de vista técnico, el proyecto integra una arquitectura basada en capas: un aplicativo web desarrollado en React, el cual consume una API REST en el backend desarrollada con Spring Boot. Este hace uso de MongoDB y MySQL para alojar los datos. Las bases de datos se integran con Flyway para el control de versiones en cuanto a la estructura y cambios realizados sobre el esquema.
+
+Finalmente, se implementa el uso de máquinas virtuales gestionadas y desplegadas con Amazon Web Services para cada una de las capas del sistema. Esta estructura permite una alta escalabilidad y facilita la implementación de nuevas funcionalidades. Asimismo, se ha diseñado con un enfoque modular e independiente, lo que permite que la API pueda ser consumida desde cualquier cliente web, sin importar el framework utilizado, favoreciendo la reutilización, la mantenibilidad y la interoperabilidad del sistema en distintos entornos tecnológicos.
+
+% ────────────────────────────────────────────────────────────────────────────
+\section{Descripción del Proyecto y Entregables}
+
+El producto consiste en el diseño y desarrollo de un aplicativo web que permita a los usuarios consultar e ingresar información relacionada a los viñedos y los productos vínicos que comercializa cada viñedo a nivel mundial, permitiendo a los usuarios filtrar la información según el país de su interés.
+
+\subsection*{Entregables}
+
+\textbf{Fase 1:}
+\begin{enumerate}[leftmargin=2cm]
+    \item Documento de la propuesta del proyecto
+    \item Documento de supuestos
+    \item Modelo E-R (Peter Chen)
+    \item Modelo E-R extendido (si aplica)
+    \item Modelo E-R con notación Barker o Crow's Foot — Data Modeler o Workbench
+    \item Modelo relacional con notación Barker o Crow's Foot — Data Modeler o Workbench
+    \item Diccionario de datos
+    \item Documento SQL de reportes
+\end{enumerate}
+
+\textbf{Fase 2:}
+\begin{enumerate}[leftmargin=2cm]
+    \item Análisis de selección de SO
+    \item Implementación de VM
+    \item Análisis de selección de RDBMS
+    \item Implementación del RDBMS
+    \item Scripts (creación, inserción, varios)
+    \item Modelo documental MongoDB
+    \item Implementación MongoDB
+    \item Conexión aplicación -- BD relacional
+    \item Conexión aplicación -- MongoDB
+    \item Repositorio Git
+    \item Video demostrativo
+\end{enumerate}
+
+% ────────────────────────────────────────────────────────────────────────────
+
+\section{Supuestos}
+
+\begin{enumerate}[leftmargin=2cm]
+    \item Se asume que la distribución de componentes y diseño gráfico deberá ser desarrollada a preferencia del grupo de desarrolladores.
+    \item El sistema deberá permitir escoger al usuario el país de interés en cualquier momento.
+    \item Se asume que los usuarios tienen conocimiento de la jerga usada en los detalles de los vinos.
+    \item Se asume que la aplicación debe mostrar solo países con al menos un viñedo establecido.
+    \item Se asume que todos los viñedos cuentan con al menos un producto vínico comercial.
+    \item Se asume que el sistema comprobará la existencia única de cada viñedo.
+    \item Se asume que el sistema comprobará la existencia única de cada vino.
+    \item Se asume que la gestión de usuarios administradores es manejada por el DBA.
+    \item Se asume que a la comunidad Winer's no les interesa el manejo de datos de los usuarios y críticos.
+\end{enumerate}
+
+% ────────────────────────────────────────────────────────────────────────────
+\section{Presupuesto Estimado}
+
+El presupuesto estimado para este proyecto se plantea con la fecha de inicio definida para el 28 de febrero del 2026 y una fecha de finalización estimada para el 22 de mayo de 2026. Se consideran únicamente los días hábiles laborales según el calendario colombiano. Se tienen en cuenta porcentajes del 3\% y 5\% correspondientes a gastos de infraestructura y gastos no anticipados, respectivamente.
+
+El equipo de trabajo está conformado por 3 ingenieros los cuales llevarán a cabo todas las fases del proyecto.
+
+\subsection*{Tabla de Roles y Ajustes Salariales}
+
+\begin{tabular}{@{} l r r @{}}
+    \toprule
+    \textbf{Rol} & \textbf{Salario mensual} & \textbf{Total Proyecto} \\
+    \midrule
+    DBA                      & COP \$12.250.000 & COP \$33.526.316 \\
+    Desarrollador Backend    & COP \$10.865.000 & COP \$29.735.789 \\
+    Desarrollador Frontend   & COP \$9.846.000  & COP \$26.946.947 \\
+    Diseñador gráfico        & COP \$1.423.500  & COP \$2.277.600  \\
+    \midrule
+    \textbf{Salarios}                        & & \textbf{COP \$90.209.053} \\
+    Costos Operativos                        & & COP \$875.789 \\
+    \textbf{Subtotal base}                   & & \textbf{COP \$91.084.842} \\
+    Infraestructura y despliegue (3\%)       & & COP \$2.732.545 \\
+    Reserva de Contingencia (5\%)            & & COP \$4.554.242 \\
+    \midrule
+    \textbf{TOTAL DEL PROYECTO}              & & \textbf{COP \$98.371.629} \\
+    \bottomrule
+\end{tabular}
+
+% ────────────────────────────────────────────────────────────────────────────
+\section{Lista de Interesados (Stakeholders)}
+
+\subsection{Externos}
+
+\begin{tabularx}{\textwidth}{@{} l X @{}}
+    \toprule
+    \textbf{Interesado} & \textbf{Interés} \\
+    \midrule
+    Crítico experto de vinos            & Publicar reseñas técnicas; espera que su opinión tenga visibilidad diferenciada. \\[6pt]
+    Consumidor aficionado               & Compartir experiencias de forma sencilla sin barreras de registro. \\[6pt]
+    Visitante informativo               & Explorar el dashboard, filtrar viñedos y vinos por ubicación. \\[6pt]
+    Propietario / representante de viñedo & Revisar las reseñas y puntuaciones dadas a su viñedo y productos vínicos. \\
+    \bottomrule
+\end{tabularx}
+
+\subsection{Internos}
+
+\begin{tabularx}{\textwidth}{@{} l l X @{}}
+    \toprule
+    \textbf{Stakeholder} & \textbf{Rol en el proyecto} & \textbf{Interés principal} \\
+    \midrule
+    DBA                    & Equipo del proyecto & Modelo de datos de reseñas con campos de segmentación, viñedos y vinos. \\[6pt]
+    Desarrollador Backend  & Equipo del proyecto & API de recepción de reseñas, lógica de clasificación por formulario, filtros del dashboard. \\[6pt]
+    Desarrollador Frontend & Equipo del proyecto & Formulario de reseña con segmentación dinámica, dashboard público. \\[6pt]
+    Product Owner / Patrocinador & Decisor      & Alcance, presupuesto y prioridades. \\[6pt]
+    Project Manager        & Gestión             & Cronograma, riesgos y entregables. \\
+    \bottomrule
+\end{tabularx}
+
+% ────────────────────────────────────────────────────────────────────────────
+\section{Requisitos y Restricciones de Aprobación del Proyecto}
+
+\subsection*{1. Base de datos relacional}
+
+El proyecto debe implementar un motor de base de datos relacional, permitiéndose el uso de MySQL, PostgreSQL, MariaDB o SQL Server, quedando expresamente excluido el uso de Oracle Database en cualquiera de sus ediciones.
+
+El modelo de datos relacional debe contemplar un mínimo de ocho entidades, con relaciones de los tres tipos fundamentales: uno a uno (1:1), uno a muchos (1:N) y muchos a muchos (N:M). El esquema debe estar normalizado hasta la Tercera Forma Normal (3FN).
+
+La implementación debe incluir obligatoriamente:
+
+\begin{itemize}[leftmargin=2cm]
+    \item Procedimientos almacenados que encapsulen la lógica de negocio relevante.
+    \item Funciones definidas por el usuario que soporten operaciones de consulta o transformación de datos.
+    \item Triggers que respondan a eventos de inserción, actualización o eliminación.
+    \item Manejo estructurado de excepciones dentro de los objetos programables.
+    \item Control explícito de transacciones mediante COMMIT y ROLLBACK.
+    \item Mecanismos de seguridad y control de integridad referencial.
+\end{itemize}
+
+\subsection*{2. Base de datos no relacional}
+
+El proyecto debe incorporar obligatoriamente MongoDB como motor de base de datos documental. La implementación debe incluir:
+
+\begin{itemize}[leftmargin=2cm]
+    \item Operaciones CRUD completas.
+    \item Consultas complejas que aprovechen las capacidades de MongoDB.
+    \item Agregaciones mediante el pipeline de agregación de MongoDB.
+\end{itemize}
+
+Adicionalmente, el proyecto debe incluir una justificación técnica documentada que explique por qué determinados datos se almacenan en la capa NoSQL en lugar de en la base de datos relacional.
+
+\subsection*{3. Infraestructura y entorno de despliegue}
+
+El entorno de ejecución debe estar basado en un sistema operativo de distribución Linux o Unix, implementado sobre una máquina virtual. El proyecto debe incluir documentación detallada del proceso de instalación y configuración del entorno.
+
+\subsection*{4. Aplicación web}
+
+La aplicación web debe establecer conexión funcional tanto con la base de datos relacional como con MongoDB. La entrega debe incluir:
+
+\begin{itemize}[leftmargin=2cm]
+    \item Una demostración funcional de las operaciones principales del sistema.
+    \item Evidencia explícita de la interacción de la aplicación con los procedimientos almacenados definidos en la base de datos relacional.
+\end{itemize}
+
+% ────────────────────────────────────────────────────────────────────────────
+\section{Asignación del Gerente de Proyecto}
+ 
+\begin{tabularx}{\textwidth}{@{} X l X l @{}}
+    \toprule
+    \textbf{Nombre} & \textbf{Cargo} & \textbf{Departamento / División} & \textbf{Rama ejecutiva} \\
+    \midrule
+    Jaiber Duvan Díaz León & Gerente y DBA & Tecnología / Gestión de Proyectos & Gerencia \\
+    \bottomrule
+\end{tabularx}
+ 
+% ────────────────────────────────────────────────────────────────────────────
+\section{Equipo del Proyecto}
+ 
+\begin{tabularx}{\textwidth}{@{} X l X @{}}
+    \toprule
+    \textbf{Nombre} & \textbf{Rol dentro del Proyecto} & \textbf{Departamento / División} \\
+    \midrule
+    David Santiago Ramírez Arévalo & Desarrollador Backend  & Tecnología \\
+    Santiago Pinzón Vásquez        & Desarrollador Frontend & Tecnología \\
+    Jaiber Duvan Díaz León         & DBA                    & Tecnología / Gestión de Proyectos \\
+    \bottomrule
+\end{tabularx}
+ 
+\end{document}
+ 
+
+\end{document}
