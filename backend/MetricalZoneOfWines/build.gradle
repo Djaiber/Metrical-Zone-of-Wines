@@ -52,3 +52,7 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+dependencies {
+    // ... otras dependencias ...
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+}
