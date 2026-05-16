@@ -218,6 +218,76 @@ Stores the aggregated metrics history for each wine. Records are insert-only —
 
 ---
 
+## audit_master_log
+
+Stores immutable transaction logs for critical Data Manipulation Language (DML) operations within the system to ensure traceability.
+
+| Column | Type | Constraints | Description |
+|---|---|---|---|
+| `log_id` | INT | PK, NOT NULL, AUTO_INCREMENT | Unique identifier for the audit log record |
+| `table_name` | VARCHAR(50) | NOT NULL | Name of the table affected by the operation |
+| `record_id` | INT | NOT NULL | Primary key value of the affected record |
+| `action_type` | VARCHAR(15) | NOT NULL | Type of DML action executed (e.g., `DELETE`, `UPDATE`) |
+| `payload` | JSON | NOT NULL | Immutable JSON representation of the record state at the time of logging |
+| `logged_at` | TIMESTAMP | NOT NULL, DEFAULT CURRENT_TIMESTAMP | Timestamp when the operation was automatically logged |
+| `logged_by_user` | VARCHAR(100) | NOT NULL | Username or system actor responsible for executing the action |
+
+---
+
+## metrics_snapshot_history
+
+Accumulative historical data repository used for time-series analysis and trend tracking across regions, vineyards, and wines.
+
+| Column | Type | Constraints | Description |
+|---|---|---|---|
+| `snapshot_id` | INT | PK, NOT NULL, AUTO_INCREMENT | Unique identifier for the historical snapshot record |
+| `entity_type` | ENUM | NOT NULL, INDEX | Type of entity being evaluated. Values: `REGION`, `VINEYARD`, `WINE` |
+| `entity_id` | INT | NOT NULL, INDEX | Corresponding identifier of the evaluated entity mapped in MySQL |
+| `snapshot_date` | DATE | NOT NULL, INDEX | Target effective date of the metric capture |
+| `avg_score` | DECIMAL(5,2) | NULL | Aggregated average review score at the snapshot date |
+| `prestige_index` | VARCHAR(20) | NULL | Computed prestige classification level at the snapshot date |
+| `medal_count` | INT | NULL | Total accumulated count of awarded medals at the snapshot date |
+| `created_at` | TIMESTAMP | NOT NULL, DEFAULT CURRENT_TIMESTAMP | Timestamp when the snapshot record was generated |
+
+---
+
+## audit_archive_log
+
+Cold storage table used for archiving legacy audit log entries to ensure regulatory compliance and optimize active table performance.
+
+| Column | Type | Constraints | Description |
+|---|---|---|---|
+| `archive_id` | INT | PK, NOT NULL, AUTO_INCREMENT | Unique identifier for the archived log record |
+| `original_log_id` | INT | NOT NULL | Reference to the source identifier from `audit_master_log.log_id` |
+| `table_name` | VARCHAR(50) | NOT NULL | Name of the table originally affected |
+| `record_id` | INT | NOT NULL | Primary key value of the originally affected record |
+| `action_type` | VARCHAR(15) | NOT NULL | Nature of the operation performed |
+| `payload` | JSON | NOT NULL | Immutable JSON payload containing the archived data |
+| `logged_at` | TIMESTAMP | NOT NULL | Original timestamp extracted from the master log entry |
+| `logged_by_user` | VARCHAR(100) | NOT NULL | User account that originally executed the operation |
+| `archived_at` | TIMESTAMP | NOT NULL, DEFAULT CURRENT_TIMESTAMP | Timestamp when the record was transferred to cold storage |
+
+---
+
+## flyway_schema_history
+
+Internal metadata tracking table managed automatically by the Flyway migration framework to manage and audit database schema versions.
+
+| Column | Type | Constraints | Description |
+|---|---|---|---|
+| `installed_rank` | INT | PK, NOT NULL | Sequential execution and installation order rank |
+| `version` | VARCHAR(50) | NULL | Schema migration version designation number (e.g., `1.0.5`) |
+| `description` | VARCHAR(200) | NOT NULL | Short text description of the applied database migration script |
+| `type` | VARCHAR(20) | NOT NULL | Migration script source execution type (e.g., `SQL`, `JDBC`) |
+| `script` | VARCHAR(1000) | NOT NULL | Filename of the migration script executed within the pipeline |
+| `checksum` | INT | NULL | Cryptographic checksum integer used to validate script integrity |
+| `installed_by` | VARCHAR(100) | NOT NULL | Database user account responsible for applying the schema script |
+| `installed_on` | TIMESTAMP | NOT NULL, DEFAULT CURRENT_TIMESTAMP | Date and time when the schema migration was successfully applied |
+| `execution_time` | INT | NOT NULL | Migration script execution duration recorded in milliseconds |
+| `success` | TINYINT(1) | NOT NULL, INDEX | Execution status flag indicator. `1` = migration success, `0` = failure |
+
+---
+
 ## ENUM Reference
 
 | Table | Column | Values |
